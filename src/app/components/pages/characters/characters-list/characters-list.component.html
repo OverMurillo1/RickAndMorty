@@ -1,0 +1,14 @@
+<app-search></app-search>
+<section class="character__list" infiniteScroll (scrolled)="onScrollDown()">
+    <ng-container *ngIf="characters$ | async as character; else showEmpty">
+        <app-characters-card *ngFor="let character of character" [character]="character"></app-characters-card>
+    </ng-container>
+    <ng-template #showEmpty>
+        <div class="no-results">
+            <h1>
+                <p>Sin resultados :(</p>
+            </h1>
+        </div>
+    </ng-template>
+    <button class="button" *ngIf="showButton" (click)="onScrollTop()">⬆️</button>
+</section>
